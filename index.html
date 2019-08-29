@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+	 crossorigin="anonymous">
+	<link rel='stylesheet' href='css/style.css'>
+	<script src='js/vue.js'></script>
+	<script src='js/vuex.js'></script>
+	<script src='js/store.js'></script>
+</head>
+
+<body>
+
+	<div class='subheader'>
+		SAC 11 3331-2652 º <span>Lista de Desejos</span> <button class='btnBlack'>Revendedor Aqui</button>
+	</div>
+
+	<header>
+		<div class='logomarca'>
+			<img src='img/logo.png'>
+		</div>
+
+		<div class='busca'>
+			<input type='text' name='d' placeholder="BUSCAR"> <a class='buscaIcoBTN' href='#buscar'>::</a>
+		</div>
+
+		<div class='ui'>
+			<a href=#><img src='img/ico-header-user.png'></a>
+		</div>
+
+	</header>
+
+	<nav class='navegacao'>
+		<a href=#>
+			<img src='img/ico-menu-feminino.png'>
+			<div class='text'>FEMININO</div>
+		</a>
+		<a href=#>
+			<img src='img/ico-menu-masculino.png'>
+			<div class='text'>MASCULINO</div>
+		</a>
+		<a href=#>
+			<img src='img/ico-menu-infantil.png'>
+			<div class='text'>INFANTIL</div>
+		</a>
+		<a href=#>
+			<img src='img/ico-menu-malas.png'>
+			<div class='text'>MALAS</div>
+		</a>
+		<a href=#>
+			<img src='img/ico-sasonal.png'>
+			<div class='text'>SASONAL</div>
+		</a>
+		<a href=#>
+			<img src='img/ico-menu-promo.png'>
+			<div class='text'>PROMOÇÃO</div>
+		</a>
+		<a href=#>
+			<img src='img/ico-tag.png'>
+			<div class='text'>PRÉ-VENDA</div>
+		</a>
+	</nav>
+
+	<div class='pageView'>
+		<div class='paginaAtual'>
+			Home | <b>Bolsas</b>
+		</div>
+
+		<div class='demostracao'>
+
+			<div class='selectPhoto'>
+				<div v-for='lista in listaImagens' :style="{backgroundImage: 'url('+lista.src+')'}" @click='APLICA_IMAGEM(lista.src)'></div>
+			</div>
+
+			<div class='exibir' :style="{backgroundImage: 'url('+exibeImagem+')'}">
+				<div class='exclusivo'>
+					EXCLUSIVO
+				</div>
+			</div>
+
+			<div class='detalhes'>
+				<h3>BOLSA FESTA PEQUENA TIRACOLO COM TEXTURA DE GLITTER</h3>
+				<div class='fosco'>
+					Fabricante: Fab. 1 | Cód 9999 | PartNumber 9037
+				</div>
+				<div class='avaliacoes'>
+					<i class="fas fa-star" :class="{ok: avalPro > 0}"></i>
+					<i class="fas fa-star" :class="{ok: avalPro > 1}"></i>
+					<i class="fas fa-star" :class="{ok: avalPro > 2}"></i>
+					<i class="fas fa-star" :class="{ok: avalPro > 3}"></i>
+					<i class="fas fa-star" :class="{ok: avalPro > 4}"></i>
+					(2) <a href='#avaliar'>Avalie este produto</a>
+				</div>
+				<div class='preco'>
+					<span class='small'>R$ 500,00</span>
+					<span class='large'>R$ 481,00</span>
+				</div>
+				<div class='cartao'>
+					2x de R$ 240,50 <span class='light'>sem juros</span>
+				</div>
+				<div class='boleto'>
+					10% de desconto no Boleto<br>
+					Economize: R$10,00
+				</div>
+				<div class='cp'>
+					<div>
+						<div class='selecionaCOR'>
+							<div>Selecione a cor:</div>
+							<div class='autogrid'>
+								<div class='seletor' v-for='pro in inColors' :style="{backgroundImage: 'url('+pro.src+')'}" :class="{ok: corSelecionada == pro.name}"
+								 @click="SELECIONA_COR(pro.name)"></div>
+							</div>
+						</div>
+						<div class='selectSize'>
+							<div>Selecione o Tamanho:</div>
+							<button v-for='(pro,index) in sizePro' :class='{ok: tamanho_atual == index}' :disabled='pro == false' @click='SELECIONA_TAMANHO(index)'>
+								{{index.toUpperCase()}}
+							</button>
+						</div>
+					</div>
+					<div>
+						<div class='areaComprar'>
+							<div>
+								<a class='frete'>
+									<img src='img/ico-product-entrega.png'> CALCULAR O FRETE
+								</a>
+							</div>
+							<div>
+								<a class='comprar'>COMPRAR > </a>
+							</div>
+							<div>
+								<a class='favorito' href='#'>
+									<i class="far fa-heart"></i> <span>Adicionar a lista de Desejos</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class='compartilhe'>
+			<div>
+				compartilhe:
+				<span><i class="fab fa-facebook-f"></i></span>
+				<span><i class="fab fa-twitter"></i></span>
+				<span><i class="fab fa-pinterest-p"></i></span>
+				<span><i class="far fa-envelope"></i></span>
+			</div>
+		</div>
+
+		<div class='produtoInfo grid2'>
+			<div>
+				<h3>DESCRIÇÃO COMPLETA</h3>
+				<p>- Solid tone quilted satchel bag with brand logo detail</p>
+				<p>- Polyurethane</p>
+				<p>- Magnetic button fastening</p>
+				<p>- Lined interior</p>
+				<p>- 1 exterior back zip pocket</p>
+				<p>- 1 interior zip pocket</p>
+				<p>- 3 interior slots</p>
+				<p>- Detachable and adjustable shoulder strap</p>
+				<p>- Dimensions: L32.5cm x H23.5cm x W10cm</p>
+			</div>
+
+			<div>
+				<h3>CARACTERISTICAS</h3>
+				<p>SKU: 5A142AC47FDDBAGS</p>
+				<p>COLOUR: Orange</p>
+				<p>Material: Polyurethame</p>
+				<p>Production country: China</p>
+				<p>Non-sale item: this item is excluded from vouchers and discounts</p>
+			</div>
+
+		</div>
+
+		<div class='promo promocoesSemana'>
+			<h2 class='subtitulo'>PROMOÇÕES DA SEMANA</h2>
+			<div class='promocao expor'>
+				<div>
+					<div>
+						<img src='img/produto/bolsa-festa-p-tiracolo-textura-glitter-ouro.jpg'>
+					</div>
+					<div>
+							<p class='titulo'>
+								Bolsa A
+							</p>
+							<p>
+								<span class='antigoPreco'>R$ 500,00</span> 
+								<span class='novoPreco'>R$ 481,00</span>
+							</p><p>
+								<span class='parcelas'>2x de R$ 240,50</span>
+								<span class='opaco'> sem juros</span>
+							</p>
+					</div>
+				</div>
+				<div>+</div>
+				<div>
+					<div><img src='img/combo1-1.jpg'></div>
+					<div>
+						<p class='titulo'>
+							Bolsa B
+						</p>
+						<p>
+							<span class='antigoPreco'>R$ 500,00</span> 
+							<span class='novoPreco'>R$ 481,00</span>
+						</p><p>
+							<span class='parcelas'>2x de R$ 240,50</span>
+							<span class='opaco'> sem juros</span>
+						</p>
+					</div>
+				</div>
+				<div>+</div>
+				<div>
+					<div><img src='img/combo1-2.jpg'></div>
+					<div>
+						<p class='titulo'>
+							Bolsa C
+						</p>
+						<p>
+							<span class='antigoPreco'>R$ 500,00</span> 
+							<span class='novoPreco'>R$ 481,00</span>
+						</p><p>
+							<span class='parcelas'>2x de R$ 240,50</span>
+							<span class='opaco'> sem juros</span>
+						</p>
+					</div>
+				</div>
+				<div>=</div>
+				<div>
+					<p>
+						<span class='antigoPreco'>R$ 500,00</span> 
+						<span class='novoPreco'>R$ 481,00</span>
+					</p><p>
+						<span class='parcelas'>2x de R$ 240,50</span>
+						<span class='opaco'> sem juros</span>
+					</p>
+					<p>
+						<button class='comprar'>COMPRAR TODOS ></button>
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class='promo promocoesCombo'>
+			<h2 class='subtitulo'>PROMOÇÕES DA SEMANA</h2>
+			<div class='promocao expor'>
+				<div>
+					<div>
+						<img src='img/produto/bolsa-festa-p-tiracolo-textura-glitter-ouro.jpg'>
+					</div>
+					<div>
+							<p class='titulo'>
+								Bolsa A
+							</p>
+							<p>
+								<span class='antigoPreco'>R$ 500,00</span> 
+								<span class='novoPreco'>R$ 481,00</span>
+							</p><p>
+								<span class='parcelas'>2x de R$ 240,50</span>
+								<span class='opaco'> sem juros</span>
+							</p>
+					</div>
+				</div>
+				<div>+</div>
+			</div>
+		</div>
+
+		<div class='remarketingCoperativo'></div>
+
+		<div class='avaliacoes'></div>
+
+		<div class='ultimosViews'></div>
+
+		<footer class='footer grid4'>
+
+		</footer>
+
+	</div>
+
+	<script src='js/app.js'></script>
+
+</body>
+
+</html>
